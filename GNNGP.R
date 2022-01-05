@@ -49,6 +49,8 @@ library(rdist)
 library(cluster) 
 library(Matrix)
 library(ggplot2)
+# For mclapply
+ncore = 4
 
 # Functions to update graph 
 source("graph_operations.R")
@@ -63,7 +65,7 @@ source("mcmc_functions.R")
 # coords: (n*2) matrix of coordinates
 # m: number of nearest neighbors for locations
 
-run_gnngp = function(X.train, X.test, Y.train, Y.test, cooords, m=5, N=5000){
+run_gnngp = function(X.train, X.test, Y.train, Y.test, test.sample, cooords, m=5, N=5000){
   # Creating initial variables
   p = dim(Y.train)[2]
   n = dim(Y.train)[1] + dim(Y.test)[1]
